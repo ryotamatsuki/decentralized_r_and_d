@@ -1,0 +1,115 @@
+% =========================================================
+% Section: Model
+%   (1) Price competition is governed by the overall demand shifter q_i (the decomposition matters only for welfare).
+%   (2) State the admissible set for the matching rate s (at least 1-s>=0).
+%   (4) Welfare counts only r_i=\alpha q_i and excludes q_i-r_i=(1-\alpha)q_i.
+%   [ADDED] Treat subsidies/taxes as lump-sum transfers with no additional real resource cost.
+% =========================================================
+
+\section{Model}
+\label{sec:model}
+
+There are two jurisdictions (local governments) indexed by $i\in\{1,2\}$, and we write $j\neq i$ for the other jurisdiction. Consumers are uniformly distributed on the Hotelling line segment $x\in[0,1]$, and each consumer demands one unit. Throughout, we assume $\alpha\in[0,1]$ and $\rho\in[0,1)$.
+
+\subsection{Downstream actors (downstream firms)}
+To avoid confusion with jurisdiction indices, we label the two downstream sellers (downstream firms) by $f\in\{A,B\}$ and write their prices as $(p_A,p_B)$. Jurisdiction $1$ is associated with seller $A$, and jurisdiction $2$ with seller $B$. Marginal cost is constant and equal to $c$ (upstream farmers are competitive, so the supply side is summarized by $c$).
+
+\subsection{Perceived quality and consumer utility (decomposing real vs.~purely persuasive components)}
+Jurisdictional public R\&D (cultivar breeding, branding, promotion, etc.) generates a quality component that shifts consumers' \emph{perceived utility}. We refer to this demand shifter as perceived quality $(q_A,q_B)$.
+
+We interpret $q_f$ as \emph{perceived quality}. A fraction $\alpha\in[0,1]$ is
+\emph{real quality} that enters welfare, $r_f\equiv \alpha q_f$, while the remainder%
+\footnote{While $\alpha$ is introduced here as a reduced-form welfare-relevant share of perceived quality, Section~\ref{sec:welfare} provides a simple two-input extension that microfounds $\alpha$ by decomposing policy into welfare-relevant research and welfare-irrelevant promotion. In that extension, decentralization generates a promotion tilt and lowers the implied welfare-relevant share in closed form, addressing concerns that $\alpha$ is an ad hoc welfare weight.}
+$q_f-r_f=(1-\alpha)q_f$ is a \emph{purely persuasive component} that affects demand
+but not welfare.
+We refer to $\alpha$ as the \emph{real-quality share}.%
+\footnote{An alternative welfare criterion, due to \citet{BeckerMurphy1993}, treats advertising as a complementary good that enters consumers' utility directly and is therefore welfare-relevant by construction. Under this view, any demand shift---including pure persuasion---would be welfare-improving, effectively setting $\alpha=1$ for all components. Our approach follows the Dixit--Norman tradition \citep{DixitNorman1978} in which welfare counts only \emph{real} quality improvements. When both perspectives are plausible, one would replace our single $\alpha$ with a weight that interpolates between the two criteria; the qualitative over-/underinvestment threshold would persist but at a different cutoff.}
+
+When consumer $x$ purchases good $f\in\{A,B\}$, her (private) utility is
+\begin{equation}\label{eq:Ui}
+U_f(x)= V + \bar q + q_f - p_f - t\, d_f(x),
+\end{equation}
+where $t>0$, $d_A(x)=x$, and $d_B(x)=1-x$. We assume $V$ is sufficiently large so that the market is fully covered (every consumer purchases from one of the two sellers).
+
+This decomposition implies that $\alpha=0$ corresponds to a purely persuasive component (pure demand reallocation), whereas $\alpha=1$ corresponds to purely real quality (a genuine welfare improvement).
+
+\begin{equation}\label{eq:decompose}
+r_f\equiv \alpha q_f,\qquad q_f-r_f=(1-\alpha)q_f.
+\end{equation}
+
+\medskip
+\noindent
+\textbf{(1) Important remark:} Second-stage price competition, demand, and profits are determined by the overall demand shifter $q_f$ that enters consumers' utility. The decomposition in \eqref{eq:decompose} is introduced \emph{solely} to evaluate welfare by counting real quality $r_f$ but excluding the purely persuasive component $q_f-r_f$. Accordingly, the second-stage price equilibrium is expressed in terms of $q_f$ (and the difference $\Delta q$). We treat $\alpha$ as reduced-form in the baseline; Section~\ref{subsec:microfound_alpha} provides a microfoundation by decomposing policy into real and purely persuasive components while preserving the same reduced-form profit dependence on $\Delta q$.
+
+\subsection{R\&D and the production of perceived quality}
+Jurisdiction $i\in\{1,2\}$ chooses an R\&D investment level $e_i\ge 0$, which generates perceived quality for the associated seller via
+\begin{equation}\label{eq:qi}
+q_A = g(e_1) + \rho\, g(e_2),
+\qquad
+q_B = g(e_2) + \rho\, g(e_1),
+\end{equation}
+where $g'(e)>0$ and $g''(e)\le 0$ (diminishing marginal returns), and where $\rho\in[0,1)$ captures knowledge spillovers.%
+\footnote{We restrict $\rho\ge 0$, treating spillovers as nonnegative knowledge transfers. In practice, a rival's quality improvement may \emph{hurt} a jurisdiction through demand reallocation, which is captured here through the competitive interaction (the $\Delta q$ term in profits) rather than through the sign of $\rho$. Three asymmetry considerations are worth noting: (i)~research spillovers are typically nonnegative and depend on adaptation costs \citep{AlstonNortonPardey1995}; (ii)~promotional spillovers may be negative if a rival's campaign crowds out attention, or positive if it expands category awareness; and (iii)~the symmetric $\rho$ assumption abstracts from geography, absorptive capacity, and institutional heterogeneity. Allowing distinct spillover parameters $\rho_R\neq\rho_M$ is straightforward within our two-input extension (Section~\ref{subsec:microfound_alpha}).}
+The R\&D cost is $K(e_i)$, with $K(0)=0$, $K'(e)>0$, and $K''(e)>0$. Finally, for budgetary or administrative reasons, we restrict $e_i\in[0,\bar e]$ for some $\bar e>0$ (the upper bound is nonbinding if $\bar e$ is sufficiently large).
+
+
+\subsection{Timing and objective functions (a central-government coordination mechanism)}
+The timing is as follows.
+(0) A central government (coordination mechanism) chooses a matching rate $s$ (allowing $s<0$ captures a tax).
+(1) Jurisdictions choose $(e_1,e_2)$.
+(2) Downstream actors (sellers $A$ and $B$) simultaneously choose $(p_A,p_B)$.
+(3) Consumers choose where to buy.
+
+Jurisdiction $i\in\{1,2\}$'s decentralized objective is to maximize local downstream profit net of the (post-matching) effective R\&D cost,
+\begin{equation}\label{eq:local_obj}
+W_i^{\mathrm{loc}}=\pi_{f(i)}(p_A,p_B;q_A,q_B) - (1-s)K(e_i),
+\qquad f(1)=A,\ f(2)=B,
+\end{equation}
+with respect to $e_i$.
+
+\medskip
+\noindent
+\textbf{(2) Admissible set for the matching rate:} We allow $s<0$ (a tax), but we assume at least that the jurisdiction's effective cost share is nonnegative, namely
+\begin{equation}\label{eq:s_domain}
+s\le 1 \qquad(\text{equivalently, }1-s\ge 0).
+\end{equation}
+Accordingly, the admissible set is $s\in(-\infty,1]$.
+We rule out $s>1$ because it would imply a negative effective cost for the jurisdiction.
+
+% [ADDED] 財源・政府収支の扱い（移転として固定）
+\medskip
+\noindent
+\textbf{Financing assumption:} We assume that the government's budget impact of the subsidy (or tax) is offset through lump-sum taxes/transfers. Hence, $s$ is a \emph{pure transfer instrument} that changes marginal incentives without generating additional real resource costs or deadweight losses.
+
+\subsection{Notation (summary)}
+\label{subsec:notation}
+We use $x\in[0,1]$ for consumer location, $e_i$ for jurisdiction $i$'s R\&D effort, $q_f$ for perceived quality, and $r_f\equiv \alpha q_f$ for real quality. The spillover parameter is $\rho$, and $s$ denotes the matching rate (possibly negative, i.e., a tax).
+
+\medskip
+\noindent
+
+% --- Model セクション内：社会厚生の定義まわり（s(x) -> \sigma(x) に置換）
+
+
+Social welfare is evaluated by excluding the purely persuasive component $q_f-r_f$ and counting only real quality $r_f$, as in \eqref{eq:decompose}.%
+\footnote{Because the market is fully covered ($D_A+D_B=1$), the model excludes a \emph{market-expansion} effect of promotion. In many agricultural contexts, generic promotion aims to expand total category demand (e.g., increasing per-capita milk or beef consumption). Introducing a variable-coverage specification would add a welfare-relevant market-creation channel even for persuasion, thereby reducing the overinvestment region. This is left for future work.}
+Specifically, dropping the constant term $V+\bar q$, define
+\begin{equation}\label{eq:soc_welfare_def}
+W^{\mathrm{soc}}
+= \int_0^1 r_{\sigma(x)}\,dx \;-\; \int_0^1 t\, d_{\sigma(x)}(x)\,dx \;-\; c \;-\; K(e_1)-K(e_2),
+\end{equation}
+where $\sigma(x)\in\{A,B\}$ denotes the good purchased by consumer $x$ (equivalently, the seller chosen) in the downstream equilibrium.
+
+\medskip
+\noindent
+\textbf{(4) Fixing the welfare criterion:} In \eqref{eq:soc_welfare_def}, we count only real quality $r_f=\alpha q_f$ and exclude the purely persuasive component $q_f-r_f=(1-\alpha)q_f$; that is, perceived quality affects welfare only through its real part.
+
+\medskip
+\noindent
+\textbf{(5) Consumer surplus and the welfare function:} Under full market coverage (every consumer buys from one seller), consumer surplus is
+\[
+CS = \int_0^1 \bigl[V + \bar q + q_{\sigma(x)} - p_{\sigma(x)} - t\,d_{\sigma(x)}(x)\bigr]\,dx.
+\]
+Price payments are pure transfers between consumers and firms and therefore cancel in a welfare aggregate that includes producer profit.%
+\footnote{If the planner also values consumer surplus explicitly---for example, under a more general objective $W = (1-\theta)\cdot CS + \theta\cdot \sum_i(\pi_i - K_i)$ with $\theta\in(0,1)$---the threshold $\bar\alpha(\rho)$ would be modified but the qualitative over-/underinvestment logic would remain.  We adopt the profit-based jurisdictional objective because it captures the incentive of local governments that act as revenue maximizers for their regional industries, as is common in the agricultural-promotion literature \citep{AlstonFreebairnJames2001}.}
+Consequently, the welfare function \eqref{eq:soc_welfare_def} captures the net social value: real quality received by consumers minus the aggregate transport cost and R\&D expenditure.

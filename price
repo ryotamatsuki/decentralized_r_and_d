@@ -1,0 +1,97 @@
+% =========================================================
+% Section: Stage 2 (Price Competition)
+%   (1) Prices, demand, and profits are governed by q_i (the demand shifter in utility), not by its welfare decomposition.
+%   (3) Add a self-contained sufficient condition, in terms of \bar x, guaranteeing interiority over the entire feasible set.
+% =========================================================
+
+\section{Price Competition}
+\label{sec:price}
+
+\begin{lemma}[Indifferent consumer and demands]\label{lem:xstar}
+Given $(p_A,p_B)$ and $(q_A,q_B)$, the indifferent consumer $x^*$ is
+\begin{equation}\label{eq:xstar_general}
+x^*(p_A,p_B;q_A,q_B)=\frac{q_A-q_B - p_A + p_B + t}{2t}.
+\end{equation}
+If $x^*\in(0,1)$, demands are $D_A=x^*$ and $D_B=1-x^*$.
+\end{lemma}
+
+\begin{lemma}[Interiority around symmetry and legitimacy of the reduced form]\label{lem:interior_local}
+Assume full market coverage (every consumer purchases from one of the two sellers). Let the perceived-quality differential be $\Delta q(e_1,e_2)\equiv q_A-q_B$, where $(q_A,q_B)$ are generated from $(e_1,e_2)$ by \eqref{eq:qi}, and assume that $g$ is continuous.
+
+(1) At any symmetric profile $e_1=e_2$, we have $\Delta q=0$ and the second-stage price equilibrium is interior. In particular, $p_A^*=p_B^*=c+t$ and $D_A^*=D_B^*=1/2$.
+
+(2) For any symmetric point $(\tilde e,\tilde e)$, there exists $\varepsilon>0$ such that, for all $(e_1,e_2)$ satisfying $\|(e_1,e_2)-(\tilde e,\tilde e)\|<\varepsilon$, we have $|\Delta q(e_1,e_2)|<3t$. Hence, in this neighborhood, the interior price equilibrium exists uniquely, and the reduced-form profit expressions (Corollary~\ref{cor:profit_pers}) as well as differentiation via the chain rule are valid.
+
+(3) (\textbf{A self-contained sufficient condition.}) If $e_i\in[0,\bar e]$, then
+\[
+\Delta q(e_1,e_2)=(1-\rho)\{g(e_1)-g(e_2)\}
+\]
+implies
+\[
+\max_{e_1,e_2\in[0,\bar e]}|\Delta q(e_1,e_2)|
+\le (1-\rho)\{g(\bar e)-g(0)\}.
+\]
+Therefore, if
+\begin{equation}\label{eq:global_interior_suff}
+(1-\rho)\{g(\bar e)-g(0)\}<3t,
+\end{equation}
+then $|\Delta q|<3t$ holds over the \emph{entire feasible set}, and Proposition~\ref{prop:price_pers} and Corollary~\ref{cor:profit_pers} apply globally (not merely locally).
+\end{lemma}
+
+\medskip
+\noindent\textit{Intuition.} The interiority restriction $|\Delta q|<3t$ ensures that the indifferent consumer lies strictly inside the Hotelling segment, so demands are well defined and the standard first-order conditions characterize a unique interior price equilibrium.%
+\footnote{When $|\Delta q|\ge 3t$, one seller captures the entire market (a corner solution). This can occur if $t$ is sufficiently small relative to quality differences---that is, if consumers care much more about quality than about ``location'' (brand loyalty). In such a regime, the price equilibrium takes a limit-pricing form and the smooth comparative statics of our analysis break down. We maintain the interiority assumption throughout; Lemma~\ref{lem:interior_local} provides an explicit sufficient condition under which it holds globally.}
+\begin{proof}
+See Appendix~\ref{app:price} (Proof of Lemma~\ref{lem:interior_local}).
+\end{proof}
+
+
+\begin{proposition}[Price equilibrium given perceived qualities]\label{prop:price_pers}
+On the interior region guaranteed by Lemma~\ref{lem:interior_local} (in particular, $|\Delta q|<3t$), the downstream price game admits a unique Nash equilibrium,
+\begin{align}
+p_A^*(q_A,q_B) &= c + t + \frac{q_A-q_B}{3},\label{eq:pAstar}\\
+p_B^*(q_A,q_B) &= c + t - \frac{q_A-q_B}{3}.\label{eq:pBstar}
+\end{align}
+Equilibrium market shares are
+\begin{equation}\label{eq:shares}
+D_A^*=\frac{1}{2}+\frac{q_A-q_B}{6t},\qquad D_B^*=\frac{1}{2}-\frac{q_A-q_B}{6t}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+See Appendix~\ref{app:proof-price-pers} (Proof of Proposition~\ref{prop:price_pers}).
+\end{proof}
+
+
+\begin{corollary}[Equilibrium profits (reduced form)]\label{cor:profit_pers}
+On the interior region in Lemma~\ref{lem:interior_local}, substituting the equilibrium in Proposition~\ref{prop:price_pers} into profits yields
+\begin{equation}\label{eq:profit_red}
+\pi_A^*(q_A,q_B)=\frac{(3t+q_A-q_B)^2}{18t},\qquad
+\pi_B^*(q_A,q_B)=\frac{(3t-q_A+q_B)^2}{18t}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $\Delta q\equiv q_A-q_B$. By Proposition~\ref{prop:price_pers},
+\[
+p_A^*-c=t+\frac{\Delta q}{3},\qquad
+D_A^*=\frac{1}{2}+\frac{\Delta q}{6t}.
+\]
+Therefore,
+\[
+\pi_A^*=(p_A^*-c)D_A^*
+=\left(t+\frac{\Delta q}{3}\right)\left(\frac{1}{2}+\frac{\Delta q}{6t}\right)
+=\frac{t}{2}+\frac{\Delta q}{3}+\frac{\Delta q^2}{18t}.
+\]
+On the other hand,
+\[
+\frac{(3t+\Delta q)^2}{18t}
+=\frac{9t^2+6t\Delta q+\Delta q^2}{18t}
+=\frac{t}{2}+\frac{\Delta q}{3}+\frac{\Delta q^2}{18t}
+\]
+Hence $\pi_A^*=(3t+\Delta q)^2/(18t)$. The expression for $\pi_B^*$ follows analogously.
+\end{proof}
+
+\begin{remark}[Relation to \citealp{BlochManceau1999}]\label{rem:BM99}
+Proposition~\ref{prop:price_pers} and Corollary~\ref{cor:profit_pers} reproduce the standard Hotelling--Bertrand pricing result that is shared with \citet{BlochManceau1999}, who analyze persuasive advertising by \emph{private} firms in a differentiated-product setting.  The key structural difference from their framework is that (i)~the demand-shifting investment is undertaken by \emph{public} actors (local government jurisdictions) rather than firms, (ii)~spillovers $\rho$ across jurisdictions are incorporated, (iii)~welfare evaluation uses a welfare-relevant share $\alpha$ that discounts pure persuasion, and (iv)~the first best is implemented via a single matching instrument, closing the loop from equilibrium distortion to intergovernmental-grant design.  The downstream pricing game itself---and hence the reduced-form profit function---is identical.
+\end{remark}

@@ -1,0 +1,247 @@
+% --- Full English rewrite of the Welfare and Policy section ---
+
+\section{Welfare and Policy}
+\label{sec:welfare}
+
+\subsection{Social welfare (fixing the evaluation criterion)}
+Social welfare is defined by \eqref{eq:soc_welfare_def}. In accordance with the maintained evaluation criterion, welfare counts only the real component $r_f=\alpha q_f$ and excludes the persuasive component $a_f=(1-\alpha)q_f$ (persuasion does not directly enter welfare).
+
+We interpret $\alpha$ as a reduced-form welfare weight on perceived quality: $\alpha=1$ corresponds to fully welfare-relevant (informative/real) quality, $\alpha=0$ corresponds to purely persuasive demand shifting, and intermediate values allow partial welfare relevance.
+
+\subsection{Preliminaries: market allocation and transport costs (interior region)}
+On the interior region, the indifferent location and the resulting market shares satisfy, by Proposition~\ref{prop:price_pers} and Lemma~\ref{lem:xstar},
+\begin{equation}\label{eq:xstar_eq}
+x^*=\frac{1}{2}+\frac{\Delta q}{6t},
+\qquad
+D_A^*=x^*,
+\qquad
+D_B^*=1-x^*,
+\qquad (\Delta q\equiv q_A-q_B).
+\end{equation}
+The transport-cost term is
+\begin{equation*}
+\int_0^1 t\, d_{\sigma(x)}(x)\,dx
+=t\int_0^{x^*} x\,dx+t\int_{x^*}^{1}(1-x)\,dx
+=\frac{t}{2}\bigl((x^*)^2+(1-x^*)^2\bigr).
+\end{equation*}
+Using the identity
+\[
+(x^*)^2+(1-x^*)^2
+=2\left(x^*-\frac{1}{2}\right)^2+\frac{1}{2},
+\]
+we can rewrite the transport-cost term as
+\begin{equation*}
+\int_0^1 t\, d_{\sigma(x)}(x)\,dx
+=\frac{t}{4}+t\left(x^*-\frac{1}{2}\right)^2.
+\end{equation*}
+Finally, since \eqref{eq:xstar_eq} implies $x^*-1/2=\Delta q/(6t)$, we obtain
+\begin{equation}\label{eq:transport_cost}
+\int_0^1 t\, d_{\sigma(x)}(x)\,dx
+=\frac{t}{4}+\frac{(\Delta q)^2}{36t}.
+\end{equation}
+
+\subsection{The symmetric social optimum (constrained first best)}
+\noindent\textit{Terminological note.} Because the planner takes the downstream market structure (Hotelling--Bertrand) and the technology $g$ as given, the resulting optimum is a \emph{constrained first best}: it is first-best conditional on the fixed market structure, not an unconstrained allocation.
+\begin{lemma}[Justifying symmetry of the social optimum]\label{lem:soc_symmetry}
+Suppose jurisdictions $1$ and $2$ are symmetric and share the same primitives $g$ and $K$. Assume the feasible set $[0,\bar e]^2$ is convex and the planner's objective in \eqref{eq:soc_welfare_def} is concave in $(e_1,e_2)$ on this set (so an optimum exists). Then the planner's problem has at least one symmetric optimal solution with $e_1=e_2$.
+\end{lemma}
+
+\begin{proof}
+See Appendix~\ref{app:welfare} (Proof of Lemma~\ref{lem:soc_symmetry}).
+\end{proof}
+
+\begin{proposition}[FOC for the symmetric social optimum (for the baseline model with $\alpha$)]\label{prop:social_alpha}
+By Lemma~\ref{lem:soc_symmetry}, it suffices to focus on symmetric policies $e_1=e_2=e$. If an interior solution exists and $K'$ is increasing while $g'$ is decreasing, then the symmetric social optimum $e^{S}(\alpha)$ is characterized by
+\begin{equation}\label{eq:FOC_social_alpha}
+K'\!\left(e^{S}(\alpha)\right)=\frac{\alpha(1+\rho)}{2}\,g'\!\left(e^{S}(\alpha)\right).
+\end{equation}
+In particular, if $\alpha=0$, then $e^{S}(0)=0$.
+\end{proposition}
+\noindent\textit{Remark.} When $\alpha=0$ (purely persuasive quality), $s^{*}$ in \eqref{eq:sstar} is not defined; implementing $e^{S}(0)=0$ generally requires a sufficiently negative matching rate (i.e., a tax) or an additional instrument, so we restrict attention to $\alpha>0$ in Proposition~\ref{prop:impl}. Note that $s^{*}\to -\infty$ as $\alpha\downarrow 0$, so we restrict attention to $\alpha>0$ in Proposition~\ref{prop:impl}.
+
+\begin{proof}
+Under symmetry, $\Delta q=0$ and the allocation is $D_A^*=D_B^*=1/2$. Hence $q_A=q_B=(1+\rho)g(e)$ and welfare-relevant quality equals $\int_0^1 r_{\sigma(x)}dx=\alpha(1+\rho)g(e)$, while transport costs reduce to $t/4$ by \eqref{eq:transport_cost}. Dropping constants, $W^{\mathrm{soc}}(e,e)=\alpha(1+\rho)g(e)-2K(e)+\text{const}$, which yields \eqref{eq:FOC_social_alpha}. A complete derivation is provided in~\ref{app:proof-social}.
+\end{proof}
+
+\subsection{A closed-form threshold for over- versus underinvestment}
+\begin{proposition}[Real-quality share and the over/underinvestment threshold]\label{prop:threshold_alpha}
+Compare the social optimum $e^{S}(\alpha)$ in Proposition~\ref{prop:social_alpha} with the decentralized equilibrium $e^{N}(s)$ in Proposition~\ref{prop:nash_pers}. Let $\bar\alpha$ be defined in \eqref{eq:baralpha}. When $s=0$ (no matching), the following statements hold:
+\begin{equation*}
+\begin{aligned}
+\alpha<\bar\alpha(\rho) \ &\Rightarrow\ e^{N}(0)>e^{S}(\alpha),\\
+\alpha=\bar\alpha(\rho) \ &\Rightarrow\ e^{N}(0)=e^{S}(\alpha),\\
+\alpha>\bar\alpha(\rho) \ &\Rightarrow\ e^{N}(0)<e^{S}(\alpha).
+\end{aligned}
+\end{equation*}
+Thus, decentralization can entail overinvestment when $\alpha$ is small and underinvestment when $\alpha$ is large.%
+\footnote{The specific cutoff $\bar\alpha(\rho)=2(1-\rho)/[3(1+\rho)]$ depends on the Hotelling--Bertrand downstream structure and the linear spillover specification.  Under alternative differentiation models (e.g., Salop circular city, logit demand, or Cournot), the sign-reversal structure---overinvestment for small $\alpha$, underinvestment for large $\alpha$---is expected to survive because it arises from the tension between business-stealing and spillover externalities, which is generic. However, the numerical value of the cutoff and the curvature of the boundary in $(\alpha,\rho)$-space will differ; in this sense, the quantitative predictions are model-specific.}
+\end{proposition}
+
+\noindent\textit{Interpretation (business stealing vs.\ spillovers).}
+Proposition~\ref{prop:threshold_alpha} isolates a simple tug-of-war between two forces.
+On the one hand, when perceived quality is largely \emph{persuasive} (small $\alpha$), local governments spend to steal business from the neighbor, which shows up as a private incentive to raise $e$ even though the welfare-relevant component is small---hence the tendency toward \emph{overinvestment}.
+On the other hand, when perceived quality is largely \emph{real} (large $\alpha$), quality improvements generate spillovers across jurisdictions (through $\rho$) that are not fully internalized, so decentralization tends to \emph{underinvest}.
+Figure~\ref{fig:regions} below turns this logic into a diagnostic chart.
+
+% (duplicate interpretation block removed)
+
+\medskip
+\noindent\textit{Numerical illustration.}
+Table~\ref{tab:numerical} evaluates the baseline model under the log-quadratic specification $g(e)=\log(1+e)$, $K(e)=e^2/2$, $t=1$. Several patterns emerge.
+When $\alpha$ is small relative to $\bar\alpha(\rho)$ (first two rows), decentralization overinvests---$e^N/e^S>1$---and the corrective matching rate is negative (a tax).
+As $\alpha$ rises (rows 3--7), the regime switches to underinvestment and the matching rate becomes a subsidy. Higher spillovers $\rho$ compress the threshold $\bar\alpha(\rho)$ toward zero, making underinvestment the more likely outcome and requiring larger subsidies.
+
+\input{table1_numerical}
+
+\subsection{Optimal design by the central government (implementation)}
+\begin{proposition}[Implementation via matching grants]\label{prop:impl}
+Suppose $\alpha>0$. On the relevant interior region, suppose Propositions~\ref{prop:nash_pers} and \ref{prop:social_alpha} apply, and assume that $K'$ is increasing and $g'$ is decreasing. Then the constrained first best $e^{S}(\alpha)$ can be implemented in the decentralized equilibrium by setting the matching rate (possibly negative) $s\in(-\infty,1]$ to
+\begin{equation}\label{eq:sstar}
+  s^{*}=1-\frac{\bar\alpha(\rho)}{\alpha},
+\end{equation}
+where $\bar\alpha(\rho)$ is defined in \eqref{eq:baralpha}.%
+\footnote{The matching rate $s^{*}$ is financed through lump-sum transfers, so the baseline implementation problem abstracts from any additional deadweight loss of public finance. If, more realistically, public funds carry a shadow cost $\lambda>1$ (reflecting distortionary taxation), the corrective benchmark would generally call for a weaker intervention, because the center would trade off the benefit of correcting the R\&D externality against the cost of raising revenue. We do not solve that richer second-best problem here; the present formula should therefore be read as the clean benchmark under lump-sum finance.}%
+\footnote{Throughout, we assume that the central government can \emph{commit} to $s$ before jurisdictions choose $e_i$. If commitment is not feasible---for example, because the center cannot resist ex post renegotiation---the equilibrium matching rate may differ from $s^*$.  In a repeated-game setting, commitment might be sustained by reputation or institutional rules (e.g., multi-year grant programs with preset rates).  The analysis of time-consistent matching policies is left for future work.}
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:nash_pers}, the decentralized equilibrium is characterized by
+\begin{equation*}
+(1-s)K'\!\left(e^{N}(s)\right)=\frac{1-\rho}{3}\,g'\!\left(e^{N}(s)\right).
+\end{equation*}
+Dividing both sides by $(1-s)$ gives
+\begin{equation*}
+K'\!\left(e^{N}(s)\right)=\frac{1-\rho}{3(1-s)}\,g'\!\left(e^{N}(s)\right).
+\end{equation*}
+By Proposition~\ref{prop:social_alpha}, the social optimum satisfies
+\begin{equation*}
+K'\!\left(e^{S}(\alpha)\right)=\frac{\alpha(1+\rho)}{2}\,g'\!\left(e^{S}(\alpha)\right).
+\end{equation*}
+Thus, implementing $e^{N}(s)=e^{S}(\alpha)$ requires
+\begin{equation*}
+\begin{aligned}
+\frac{1-\rho}{3(1-s)}&=\frac{\alpha(1+\rho)}{2}
+\iff
+1-s=\frac{2(1-\rho)}{3\alpha(1+\rho)}
+\iff
+s=1-\frac{\bar\alpha(\rho)}{\alpha}.
+\end{aligned}
+\end{equation*}
+which is exactly \eqref{eq:sstar}.
+\end{proof}
+
+\noindent\textit{Alternative instruments when $s^{*}$ is strongly negative.}
+As $\alpha\downarrow 0$, $s^{*}\to -\infty$: implementing the constrained first best requires arbitrarily large taxes on R\&D---a setting in which the matching-grant mechanism is economically unrealistic. Three complementary policy tools may be considered for this regime:
+(i)~\emph{expenditure ceilings}: a direct cap on promotional spending (or equivalently a requirement that a minimum fraction of the budget be allocated to welfare-relevant research);
+(ii)~\emph{ex~ante review}: a competitive-grant system in which a central agency evaluates proposed projects and funds only those whose $\alpha$ exceeds a threshold; and
+(iii)~\emph{performance-based transfers}: matching payments conditioned on measurable outcomes (e.g., yields, nutritional content) rather than expenditure.
+All three approaches restrict or screen the \emph{composition} of investment, complementing---or substituting for---the \emph{level} correction delivered by a matching rate.
+
+\subsection{A two-input extension: microfounding \texorpdfstring{$\alpha$}{alpha} via real R\&D and promotion}
+\label{subsec:microfound_alpha}
+
+The baseline model and the present extension play different but complementary roles.
+In Sections 2--5.5, the policy problem is one-dimensional and $\alpha$ is treated as an exogenous reduced-form summary of how much of the demand shifter is welfare-relevant; within that benchmark, the single matching rule $s^*=1-\bar\alpha(\rho)/\alpha$ provides a closed-form implementation result.
+Section 5.6 moves to a richer environment in which the composition of policy is itself endogenous, so that $\alpha$ is no longer primitive; in that setting, the baseline formula should be read as a benchmark for the one-instrument problem, whereas full efficiency generally requires separate instruments for research and promotion.
+
+We keep the same downstream environment and the reduced-form profit dependence on the perceived-quality gap $\Delta q$ (Corollary~\ref{cor:profit_pers}). We now decompose perceived quality into a welfare-relevant research component and a welfare-irrelevant promotional component:
+\[
+q_i = q_i^R + q_i^M,\qquad
+q_i^R = r_i + \rho_R r_j,\qquad
+q_i^M = m_i + \rho_M m_j,\qquad i\neq j,
+\]
+where $\rho_R,\rho_M\in[0,1)$ capture spillovers in each component. Local governments choose $(r_i,m_i)$ and incur quadratic costs. The decentralized objective is
+\[
+W_i^G=\pi_i^*(\Delta q)-\frac{k_R}{2}r_i^2-\frac{k_M}{2}m_i^2,
+\]
+where $\pi_i^*(\Delta q)$ is the same reduced-form profit as in \eqref{eq:profit_red}. Social welfare follows the maintained criterion: only the real component enters welfare directly (promotion is pure persuasion), while market allocation depends on $q_i=q_i^R+q_i^M$ through $\Delta q$.
+
+\begin{proposition}[Two-input allocations under decentralization and under the planner]
+\label{prop:two_input}
+Consider the interior region $|\Delta q|<3t$ and suppose each government's objective is strictly concave in $(r_i,m_i)$ (Appendix~D provides a sufficient condition). Then the symmetric decentralized equilibrium satisfies
+\[
+r^N=\frac{1-\rho_R}{3k_R},\qquad
+m^N=\frac{1-\rho_M}{3k_M}.
+\]
+The symmetric social optimum satisfies
+\[
+r^S=\frac{1+\rho_R}{2k_R},\qquad
+m^S=0.
+\]
+Hence decentralization underprovides welfare-relevant research ($r^N<r^S$) and overprovides purely persuasive promotion ($m^N>m^S$).
+\end{proposition}
+
+\begin{corollary}[Endogenous welfare-relevant share (promotion tilt)]
+\label{cor:alpha_endog}
+In the symmetric decentralized equilibrium, the implied welfare-relevant share of perceived quality is
+\[
+\alpha^N \equiv \frac{q^R}{q^R+q^M}
+=
+\frac{k_M(1-\rho_R^2)}{k_M(1-\rho_R^2)+k_R(1-\rho_M^2)}.
+\]
+In particular, a higher spillover in real research ($\rho_R$) reduces $\alpha^N$ (a stronger tilt toward persuasion), strengthening the promotion-policy trap interpretation of the baseline threshold analysis.
+\end{corollary}
+
+\begin{corollary}[Comparative statics of the endogenous welfare-relevant share]\label{cor:alpha_compstatics}
+Under the same conditions as Corollary~\ref{cor:alpha_endog}:
+\[
+\frac{\partial \alpha^N}{\partial k_R}<0,\qquad
+\frac{\partial \alpha^N}{\partial k_M}>0,\qquad
+\frac{\partial \alpha^N}{\partial \rho_R}<0,\qquad
+\frac{\partial \alpha^N}{\partial \rho_M}>0.
+\]
+Costlier research or larger research spillovers tilt the policy mix toward promotion (lower $\alpha^N$), while costlier promotion or larger promotion spillovers tilt it toward research (higher $\alpha^N$).
+\end{corollary}
+
+\begin{proof}
+Direct differentiation of $\alpha^N$ in Corollary~\ref{cor:alpha_endog}. In particular,
+\[
+\frac{\partial\alpha^N}{\partial\rho_R}
+=-\frac{2\rho_R\, k_M\, k_R\,(1-\rho_M^2)}{[k_M(1-\rho_R^2)+k_R(1-\rho_M^2)]^2}<0,
+\qquad
+\frac{\partial\alpha^N}{\partial\rho_M}
+=\frac{2\rho_M\, k_M\, k_R\,(1-\rho_R^2)}{[k_M(1-\rho_R^2)+k_R(1-\rho_M^2)]^2}>0.
+\]
+The signs for $k_R$ and $k_M$ are analogous.
+\end{proof}
+
+\noindent\textit{Economic interpretation.}
+The result $\partial\alpha^N/\partial k_M>0$ suggests that any development---such as the growth of social media---that \emph{lowers} the unit cost of promotional activity ($k_M\downarrow$) will deepen the promotion tilt and lower $\alpha^N$, thereby pushing the economy further into the overinvestment (promotion-trap) region of Figure~\ref{fig:regions}.
+
+\begin{proposition}[Two-instrument implementation in the two-input model]\label{prop:two_instrument}
+Consider the two-input model of Proposition~\ref{prop:two_input}. Suppose a central government can set separate matching rates $s_R$ and $s_M$ on research and promotion costs, so that jurisdiction~$i$ faces effective costs $(1-s_R)\frac{k_R}{2}r_i^2+(1-s_M)\frac{k_M}{2}m_i^2$. Then:
+\begin{enumerate}
+\item[(i)] The symmetric decentralized equilibrium with matching is
+\[
+r^N(s_R)=\frac{1-\rho_R}{3k_R(1-s_R)},\qquad
+m^N(s_M)=\frac{1-\rho_M}{3k_M(1-s_M)}.
+\]
+\item[(ii)] The socially optimal research level $r^S=(1+\rho_R)/(2k_R)$ is implemented by setting
+\begin{equation}\label{eq:sR_star}
+s_R^{*}=1-\frac{2(1-\rho_R)}{3(1+\rho_R)}
+=1-\bar\alpha(\rho_R),
+\end{equation}
+where $\bar\alpha(\cdot)$ is the baseline threshold defined in~\eqref{eq:baralpha}. This has the same structural form as the baseline matching rate $s^{*}$ in~\eqref{eq:sstar} with $\alpha=1$ (because research is 100\% welfare-relevant) and $\rho=\rho_R$.
+\item[(iii)] No finite matching rate $s_M$ implements $m^S=0$. Social welfare is strictly decreasing in $s_M$ (since any promotion is pure waste), so the constrained optimum requires either (a)~a direct ban on publicly funded promotion ($m_i=0$), or (b)~a sufficiently negative $s_M$ (a confiscatory tax on promotion costs) to drive $m^N(s_M)$ close to zero.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(i) follows from the FOC of jurisdiction~1 at symmetry:
+\[
+\frac{1-\rho_R}{3}=(1-s_R)k_R\, r \quad\Rightarrow\quad r=\frac{1-\rho_R}{3k_R(1-s_R)},
+\]
+and analogously for $m$.  Part~(ii) equates $r^N(s_R)=r^S$:
+\[
+\frac{1-\rho_R}{3k_R(1-s_R)}=\frac{1+\rho_R}{2k_R}
+\;\Longleftrightarrow\;
+1-s_R=\frac{2(1-\rho_R)}{3(1+\rho_R)}=\bar\alpha(\rho_R).
+\]
+Part~(iii): Since $m^N(s_M)=(1-\rho_M)/[3k_M(1-s_M)]>0$ for all finite $s_M$ (as $\rho_M<1$), no finite rate implements $m^S=0$. Moreover, social welfare is $W^{\mathrm{soc}}=(1+\rho_R)r-k_R r^2-k_M m^2+\mathrm{const}$, and $\partial W/\partial s_M = (\partial W/\partial m)\cdot(\partial m^N/\partial s_M)<0$ because $\partial W/\partial m=-2k_M m<0$ and $\partial m^N/\partial s_M>0$.
+\end{proof}
+
+\noindent\textit{Remark.}
+The asymmetry between (ii) and (iii) is instructive: matching grants are well suited to correcting the \emph{level} of a welfare-relevant input (research) but cannot eliminate a welfare-irrelevant input (promotion) whose private return is strictly positive. This makes matching grants a necessary but insufficient policy tool in the two-input setting; a quantity regulation or institutional separation (ring-fencing research budgets from promotional budgets) is needed to close the gap.
+
+The extension clarifies the baseline role of $\alpha$: it summarizes the composition of policy between welfare-relevant research and welfare-irrelevant promotion. Even when jurisdictions ``invest a lot'' in the demand shifter $q$, decentralization can be socially wasteful because it reallocates spending toward persuasion and lowers the welfare-relevant share.
+

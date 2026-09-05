@@ -1,0 +1,245 @@
+\appendix
+
+\section{Proofs for Section~\ref{sec:price}}
+\label{app:price}
+
+\begin{proof}[Proof of Lemma~\ref{lem:interior_local}]
+\label{app:proof-interior}
+(1) If $e_1=e_2=\tilde e$, then \eqref{eq:qi} implies $q_A=g(\tilde e)+\rho g(\tilde e)=q_B$, hence $\Delta q=0$. Substituting $\Delta q=0$ into Proposition~\ref{prop:price_pers} yields $p_A^*=p_B^*=c+t$ and $D_A^*=D_B^*=1/2$, which is interior.
+
+(2) The mapping $\Delta q(e_1,e_2)=(1-\rho)\{g(e_1)-g(e_2)\}$ is continuous because $g$ is continuous, and it satisfies $\Delta q(\tilde e,\tilde e)=0$. By the definition of continuity, there exists $\varepsilon>0$ such that $\|(e_1,e_2)-(\tilde e,\tilde e)\|<\varepsilon$ implies $|\Delta q(e_1,e_2)|<3t$. This inequality guarantees interior demand (equivalently $D_A^*\in(0,1)$), so Proposition~\ref{prop:price_pers} and Corollary~\ref{cor:profit_pers} apply in this neighborhood.
+
+(3) The bound follows immediately from $\Delta q=(1-\rho)\{g(e_1)-g(e_2)\}$ and $e_i\in[0,\bar e]$. If \eqref{eq:global_interior_suff} holds, then $|\Delta q|<3t$ for every feasible profile, which in turn justifies uniqueness of the interior equilibrium and the global use of the reduced-form profits and chain-rule differentiation.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:profit_pers}]
+\label{app:proof-profit-red}
+Let $\Delta q\equiv q_A-q_B$. By Proposition~\ref{prop:price_pers},
+\[
+p_A^*-c=t+\frac{\Delta q}{3},
+\qquad
+D_A^*=\frac{1}{2}+\frac{\Delta q}{6t}.
+\]
+Therefore,
+\[
+\pi_A^*=(p_A^*-c)D_A^*
+=\left(t+\frac{\Delta q}{3}\right)\left(\frac{1}{2}+\frac{\Delta q}{6t}\right)
+=\frac{t}{2}+\frac{\Delta q}{3}+\frac{\Delta q^2}{18t}.
+\]
+On the other hand,
+\[
+\frac{(3t+\Delta q)^2}{18t}
+=\frac{9t^2+6t\Delta q+\Delta q^2}{18t}
+=\frac{t}{2}+\frac{\Delta q}{3}+\frac{\Delta q^2}{18t}.
+\]
+Hence $\pi_A^*=(3t+\Delta q)^2/(18t)$. The expression for $\pi_B^*$ follows analogously.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:price_pers}]
+\label{app:proof-price-pers}
+By Lemma~\ref{lem:xstar}, on the interior region demands are $D_A=x^*$ and $D_B=1-x^*$. Hence profits are
+\[
+\begin{aligned}
+\pi_A&=(p_A-c)\frac{q_A-q_B-p_A+p_B+t}{2t},\\
+\pi_B&=(p_B-c)\frac{-q_A+q_B+p_A-p_B+t}{2t}.
+\end{aligned}
+\]
+Consider firm $A$. Since $\partial D_A/\partial p_A=-1/(2t)$, its first-order condition is
+\[
+\frac{\partial \pi_A}{\partial p_A}
+= D_A + (p_A-c)\frac{\partial D_A}{\partial p_A}
+=\frac{q_A-q_B+c-2p_A+p_B+t}{2t}.
+\]
+Analogously,
+\[
+\frac{\partial \pi_B}{\partial p_B}
+=\frac{-q_A+q_B+c+p_A-2p_B+t}{2t}.
+\]
+The second-order conditions hold because
+\[
+\frac{\partial^2 \pi_A}{\partial p_A^2}=-\frac{1}{t}<0,\qquad
+\frac{\partial^2 \pi_B}{\partial p_B^2}=-\frac{1}{t}<0.
+\]
+Solving the first-order conditions,
+\[
+q_A-q_B+c-2p_A+p_B+t=0,\qquad
+-q_A+q_B+c+p_A-2p_B+t=0,
+\]
+yields the unique Nash equilibrium,
+\[
+p_A^*=c+t+\frac{q_A-q_B}{3},\qquad
+p_B^*=c+t-\frac{q_A-q_B}{3}.
+\]
+Substituting into \eqref{eq:xstar_general} delivers \eqref{eq:shares}.
+\end{proof}
+
+
+
+
+\section{Proofs for Section~\ref{sec_rd}}
+\label{app:rd}
+
+
+% Ensure starred subsections can be referenced without producing "B.1"-style numbering
+\renewcommand{\thesubsection}{\Alph{section}}
+
+% Ensure starred subsections can be referenced without producing "B.1"-style numbering
+\renewcommand{\thesubsection}{\Alph{section}}
+
+
+
+
+
+
+\subsection*{A sufficient condition for strict concavity}
+\label{app:concavity}
+On the interior region, $\pi_i^*$ is a quadratic function of $\Delta q$ as in \eqref{eq:profit_red}, with $\Delta q=(1-\rho)\{g(e_i)-g(e_j)\}$ by \eqref{eq:Delta_q}. Holding $e_j$ fixed and differentiating yields
+
+\[
+\frac{\partial^2 \pi_i^*}{\partial e_i^2}
+=\frac{1}{9t}\Bigl((1-\rho)^2\{g'(e_i)\}^2+(1-\rho)\{3t\pm \Delta q\}g''(e_i)\Bigr)
+\le \frac{(1-\rho)^2}{9t}\{g'(e_i)\}^2,
+\]
+where the inequality uses $g''\le 0$. Thus, under $s<1$, if
+\[
+(1-s)K''(e_i)>\frac{(1-\rho)^2}{9t}\{g'(e_i)\}^2 \quad \text{for all }e_i\in[0,\bar e],
+\]
+then $W_i^{\mathrm{loc}}=\pi_i^*-(1-s)K$ is strictly concave in $e_i$. For instance, if $g(e)=\beta\log(1+e)$ and $K(e)=\frac{\kappa}{2}e^2$, then $g'(e)\le \beta$ implies that $(1-s)\kappa>\frac{(1-\rho)^2}{9t}\beta^2$ is sufficient.
+
+\begin{proof}[Proof of Proposition~\ref{prop:nash_pers}]
+\label{app:proof-nash}
+By Lemma~\ref{lem:interior_local}, on the interior region the reduced-form profits in Corollary~\ref{cor:profit_pers} apply, and differentiation via the chain rule is valid. Jurisdiction $1$ maximizes
+\[
+W_1^{\mathrm{loc}}(e_1,e_2)=\pi_A^*(q_A,q_B)-(1-s)K(e_1).
+\]
+Differentiating with respect to $e_1$ gives
+\begin{equation}\label{eq:dWdx_general}
+\frac{\partial W_1^{\mathrm{loc}}}{\partial e_1}
+=\frac{\partial \pi_A^*}{\partial \Delta q}\cdot\frac{\partial \Delta q}{\partial e_1}-(1-s)K'(e_1).
+\end{equation}
+From Corollary~\ref{cor:profit_pers},
+\[
+\pi_A^*=\frac{(3t+\Delta q)^2}{18t}
+\quad\Rightarrow\quad
+\frac{\partial \pi_A^*}{\partial \Delta q}=\frac{3t+\Delta q}{9t}.
+\]
+Moreover, \eqref{eq:Delta_q} implies
+\[
+\frac{\partial \Delta q}{\partial e_1}=(1-\rho)g'(e_1).
+\]
+Substituting into \eqref{eq:dWdx_general} yields
+\[
+\frac{\partial W_1^{\mathrm{loc}}}{\partial e_1}
+=\frac{3t+\Delta q}{9t}(1-\rho)g'(e_1)-(1-s)K'(e_1).
+\]
+At a symmetric profile $e_1=e_2=e$, we have $\Delta q=0$, so
+\[
+\left.\frac{\partial W_1^{\mathrm{loc}}}{\partial e_1}\right|_{e_1=e_2=e}
+=\frac{3t}{9t}(1-\rho)g'(e)-(1-s)K'(e)
+=\frac{1-\rho}{3}g'(e)-(1-s)K'(e).
+\]
+Imposing the first-order condition $\partial W_1^{\mathrm{loc}}/\partial e_1=0$ gives \eqref{eq:FOC_nash_pers}. If $K'(0)=0$ and $g'(0)>0$, then the right-hand side of \eqref{eq:FOC_nash_pers} is strictly positive at $e=0$ whereas the left-hand side equals zero; monotonicity therefore implies $e^{N}(s)>0$. Uniqueness follows from Assumption~\ref{ass:concave_pers} together with standard monotonicity arguments.
+\end{proof}
+
+\section{Proofs for Section~\ref{sec:welfare}}
+\label{app:welfare}
+
+\begin{proof}[Proof of Lemma~\ref{lem:soc_symmetry}]
+\label{app:proof-soc-sym}
+The welfare function \eqref{eq:soc_welfare_def} is invariant to relabeling ($1\leftrightarrow 2$). Hence, if $(e_1,e_2)$ is optimal, then so is the swapped profile $(e_2,e_1)$, yielding the same welfare level. If the feasible set is convex and the objective is concave in $(e_1,e_2)$ (a convenient sufficient condition), then the average profile $(\frac{e_1+e_2}{2},\frac{e_1+e_2}{2})$ achieves at least the same welfare. Therefore, a symmetric optimum exists.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:social_alpha}]
+\label{app:proof-social}
+Under a symmetric policy $e_1=e_2=e$, \eqref{eq:qi} implies
+\[
+q_A=q_B=(1+\rho)g(e),
+\qquad
+\Delta q=0,
+\qquad
+D_A^*=D_B^*=\frac12.
+\]
+Moreover, by \eqref{eq:decompose}, $r_A=r_B=\alpha(1+\rho)g(e)$, so
+\[
+\int_0^1 r_{\sigma(x)}\,dx
+=r_A D_A^*+r_B D_B^*
+=\alpha(1+\rho)g(e)\cdot \frac12+\alpha(1+\rho)g(e)\cdot \frac12
+=\alpha(1+\rho)g(e).
+\]
+Transport costs equal $t/4$ by substituting $\Delta q=0$ into \eqref{eq:transport_cost}. Dropping constants, we can write
+\[
+W^{\mathrm{soc}}(e,e)=\alpha(1+\rho)g(e)-2K(e)-\frac{t}{4}+\text{const}.
+\]
+The first-order condition is therefore
+\[
+\frac{d}{de}W^{\mathrm{soc}}(e,e)=\alpha(1+\rho)g'(e)-2K'(e)=0,
+\]
+which is equivalent to \eqref{eq:FOC_social_alpha}. When $\alpha=0$, the condition reduces to $-2K'(e)=0$, and since $K'(e)>0$ for $e>0$, it follows that $e^{S}(0)=0$.
+\end{proof}
+\section*{Appendix D Proofs for Section~\ref{subsec:microfound_alpha} (two-input extension)}
+
+\subsection*{D.1 Reduced-form profit derivative}
+From Corollary~\ref{cor:profit_pers}, for seller $A$ the reduced-form equilibrium profit on the interior region is $\pi_A^*(\Delta q)=(3t+\Delta q)^2/(18t)$, hence
+\[
+\frac{\partial \pi_A^*}{\partial \Delta q}=\frac{3t+\Delta q}{9t},\qquad
+\left.\frac{\partial \pi_A^*}{\partial \Delta q}\right|_{\Delta q=0}=\frac13.
+\]
+
+\subsection*{D.2 Perceived-quality gap in $(r,m)$}
+By construction,
+\[
+\Delta q = (q_i^R+q_i^M)-(q_j^R+q_j^M)
+=(1-\rho_R)(r_i-r_j)+(1-\rho_M)(m_i-m_j),
+\]
+so $\partial \Delta q/\partial r_i=1-\rho_R$ and $\partial \Delta q/\partial m_i=1-\rho_M$.
+
+\subsection*{D.3 Decentralized FOCs and symmetric equilibrium}
+Government $i$ maximizes
+\[
+W_i^G=\pi_i^*(\Delta q)-\frac{k_R}{2}r_i^2-\frac{k_M}{2}m_i^2.
+\]
+Using the chain rule, evaluated at the symmetric point $\Delta q=0$,
+\[
+0=\frac{\partial W_i^G}{\partial r_i}
+=\left.\frac{\partial \pi_i^*}{\partial \Delta q}\right|_{\Delta q=0}(1-\rho_R)-k_R r_i
+\ \Rightarrow\ r^N=\frac{1-\rho_R}{3k_R},
+\]
+and analogously $m^N=(1-\rho_M)/(3k_M)$.
+
+\subsection*{D.4 Concavity condition (sufficient)}
+Since $\pi_i^*(\Delta q)$ is convex in $\Delta q$ with $\partial^2 \pi_i^*/\partial \Delta q^2=1/(9t)$ and $\Delta q$ is linear in $(r_i,m_i)$, the Hessian of $W_i^G$ with respect to $(r_i,m_i)$ is
+\[
+H_i=\frac{1}{9t}
+\begin{pmatrix}
+(1-\rho_R)^2 & (1-\rho_R)(1-\rho_M)\\
+(1-\rho_R)(1-\rho_M) & (1-\rho_M)^2
+\end{pmatrix}
+-
+\begin{pmatrix}
+k_R & 0\\
+0 & k_M
+\end{pmatrix}.
+\]
+A sufficient (and in this rank-one form, also necessary) condition for strict concavity is
+\[
+\frac{1}{9t}\left(\frac{(1-\rho_R)^2}{k_R}+\frac{(1-\rho_M)^2}{k_M}\right)<1.
+\]
+
+\subsection*{D.5 Social optimum and $m^S=0$}
+Under the maintained welfare criterion, promotion does not enter welfare directly. At the symmetric point, $\Delta q=0$, so the allocation and transport-cost terms are locally unaffected to first order by a symmetric change in $m$. Therefore,
+\[
+\left.\frac{\partial W^S}{\partial m_i}\right|_{\text{sym}}=-k_M m_i \ \Rightarrow\ m^S=0.
+\]
+For research, at symmetry each jurisdiction serves half of consumers and a marginal increase in $r_i$ raises the real component for its own consumers by $1$ and for the other jurisdiction's consumers via the spillover by $\rho_R$. Hence the marginal social gain is $(1+\rho_R)/2$, yielding
+\[
+\left.\frac{\partial W^S}{\partial r_i}\right|_{\text{sym}}=\frac{1+\rho_R}{2}-k_R r_i \ \Rightarrow\ r^S=\frac{1+\rho_R}{2k_R}.
+\]
+
+\subsection*{D.6 Endogenous share}
+At symmetry, $q^R=(1+\rho_R)r^N$ and $q^M=(1+\rho_M)m^N$, hence
+\[
+\alpha^N=\frac{(1+\rho_R)r^N}{(1+\rho_R)r^N+(1+\rho_M)m^N}
+=\frac{k_M(1-\rho_R^2)}{k_M(1-\rho_R^2)+k_R(1-\rho_M^2)}.
+\]

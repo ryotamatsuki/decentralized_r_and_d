@@ -1,0 +1,44 @@
+% =========================================================
+% Section: 第1段階：分権R&Dゲーム（自治体ナッシュ）
+%   (2) s<=1 を前提に、分権FOCに (1-s) を入れて明示
+%   (1) 利潤は Δq に関する縮約形で微分（整合）
+% =========================================================
+
+\section{Decentralized R\&D}
+\label{sec_rd}
+
+
+\subsection{Preliminaries: expressing the perceived-quality differential}
+From \eqref{eq:qi},
+\[
+q_A=g(e_1)+\rho g(e_2),\qquad q_B=g(e_2)+\rho g(e_1),
+\]
+so that
+\begin{equation}\label{eq:Delta_q}
+\Delta q \equiv q_A-q_B = (1-\rho)\bigl(g(e_1)-g(e_2)\bigr).
+\end{equation}
+
+\subsection{Characterization of the symmetric Nash equilibrium}
+
+
+\begin{assumption}[Uniqueness of best responses (sufficient concavity)]\label{ass:concave_pers}
+On the interior region in Lemma~\ref{lem:interior_local}, each jurisdiction's objective $W_i^{\mathrm{loc}}$ is strictly concave in its own choice $e_i$ (so that best responses are unique).%
+\footnote{A convenient sufficient condition for strict concavity (and hence uniqueness of best responses) is provided in Appendix~\ref{app:rd}.}%
+\end{assumption}
+
+
+
+\begin{proposition}[Symmetric Nash equilibrium and the decentralized FOC (with matching rate $s$)]\label{prop:nash_pers}
+Under Assumption~\ref{ass:concave_pers} and $s\le 1$, the R\&D game admits a symmetric equilibrium $e_1=e_2=e^{N}(s)$. If $K'$ is increasing and $g'$ is decreasing, the equilibrium is unique, and $e^{N}(s)$ satisfies
+\begin{equation}\label{eq:FOC_nash_pers}
+(1-s)K'\!\left(e^{N}(s)\right)=\frac{1-\rho}{3}\, g'\!\left(e^{N}(s)\right).
+\end{equation}
+Moreover, if $K'(0)=0$ and $g'(0)>0$, then $e^{N}(s)>0$.
+\end{proposition}
+
+\begin{proof}[Proof. See Appendix~\ref{app:rd}.]
+On the interior region, reduced-form profits depend on $(e_1,e_2)$ only through the perceived-quality differential $\Delta q$. Differentiating $W_1^{\mathrm{loc}}=\pi_A^*(\Delta q)-(1-s)K(e_1)$ by the chain rule yields a marginal benefit term proportional to $\partial \pi_A^*/\partial \Delta q$ times $\partial \Delta q/\partial e_1=(1-\rho)g'(e_1)$. Evaluating at the symmetric profile $e_1=e_2$ implies $\Delta q=0$, which delivers the decentralized FOC \eqref{eq:FOC_nash_pers}. The full proof, including the intermediate derivatives and the positivity claim, is in Appendix~\ref{app:rd}.
+
+
+
+\end{proof}

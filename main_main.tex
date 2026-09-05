@@ -1,0 +1,333 @@
+% !TEX program = lualatex
+\documentclass[sn-mathphys-ay]{sn-jnl} % pdflatex/lualatex指定は外してOK
+
+% Prefer bibliography style in the project root (same level as this .tex)
+\makeatletter
+\def\input@path{{./}}
+\makeatother
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xurl} % allow line breaks in long URLs (helps Underfull \hbox in bibliography)
+\usepackage{hyperref}
+\usepackage{doi}
+\Urlmuskip=0mu plus 1mu\relax
+
+% Avoid hyperref PDF-string warnings from TeX-only tokens (e.g., line breaks in titles)
+\makeatletter
+\pdfstringdefDisableCommands{%
+  \def\\{ }%
+  \def\comma{, }%
+  \def\sep{; }%
+  \let\@fnmark\@empty%
+}
+\makeatother
+% Explicit PDF metadata (avoid TeX tokens in PDF strings)
+\hypersetup{%
+  pdftitle={Decentralized Public R and D, Demand Shifters, and the Over- and Underinvestment Threshold},%
+  pdfauthor={Ryota Matsuki}%
+}
+% Ensure elsarticle's \comma macro is harmless in PDF strings
+\makeatletter
+\providecommand{\comma}{, }
+\makeatother
+
+% --- theorem environments ---
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\raggedbottom
+% (optional) suppress underfull box warnings
+\hbadness=10000
+\vbadness=10000
+\begin{document}
+% Mitigate small overfull boxes in narrow review layouts
+\setlength{\emergencystretch}{2em}
+
+\title[Decentralized Public R\&D, Demand Shifters, and the Over- and Underinvestment Threshold]{Decentralized Public R\&D, Demand Shifters, and the Over- and Underinvestment Threshold}
+
+\author*{\fnm{Ryota} \sur{Matsuki}\thanks{This work was conducted in a personal capacity;\allowbreak\space the views expressed are solely those of the author.}}
+\email{ryota.matsuki@gmail.com}
+
+\affil{\orgname{Independent Researcher},
+  \orgaddress{\city{Matsuyama}, \state{Ehime}, \country{Japan}}}
+
+\abstract{
+We study decentralized public R\&D by local governments when downstream firms compete in prices and policy shifts demand. In a two-jurisdiction Hotelling model, public R\&D raises perceived quality that combines a welfare-relevant (real) component and a purely persuasive component. The welfare-relevant share $\alpha$ determines how much of perceived quality is counted in welfare, while spillovers are governed by $\rho$. Solving downstream Bertrand pricing yields a reduced-form profit function, enabling a closed-form comparison between the decentralized Nash equilibrium and the social optimum. We obtain a sharp sign reversal: decentralized investment is excessive if and only if $\alpha$ is below the cutoff $\bar\alpha(\rho)=2(1-\rho)/[3(1+\rho)]$, and is insufficient above it; in the purely persuasive benchmark ($\alpha=0$), the first best entails zero investment. We also show that the social optimum can be implemented by a single matching instrument on R\&D costs (allowing for negative matching), with an implementing rate $s^*=1-\bar\alpha(\rho)/\alpha$ in closed form. The results clarify when interjurisdictional competition becomes a promotion-policy trap and when knowledge spillovers instead call for coordinated support.
+
+
+
+
+\medskip
+\noindent\textit{JEL codes:} H73, H77, L13, O32.
+}
+
+\keywords{Decentralized public R\&D\enspace$\cdot$\enspace Matching grants\enspace$\cdot$\enspace Interjurisdictional competition\enspace$\cdot$\enspace Hotelling competition\enspace$\cdot$\enspace Persuasion (advertising)\enspace$\cdot$\enspace Business stealing}
+
+\maketitle
+
+\section{Introduction} 
+\label{sec:intro}
+Across the world, subnational governments spend public money to “upgrade” and market local products.
+Consider a concrete example that is easy to visualize: two neighboring coffee-growing regions that each want to position their beans as \emph{specialty} in export markets.
+Both regional governments fund agronomic and processing programs (e.g., disease-resistant varietals, fermentation protocols, quality-control labs, and certification/traceability systems) and also fund branding campaigns (logos, events, slogans, influencer marketing, and tourism tie-ins).%
+\footnote{In many agricultural settings, research and promotional activities are administered by \emph{separate} institutions---for example, public experiment stations versus commodity-promotion boards (checkoffs). Our model abstracts from this institutional separation by treating the jurisdiction as a single decision-maker. The two-input extension in Section~\ref{subsec:microfound_alpha} introduces separate decision variables for research and promotion, which partially addresses this concern.}
+These interventions raise consumers’ \emph{perceived} quality of a region’s coffee and can be leveraged by downstream firms (e.g., cooperatives and trading firms) competing in prices.
+When many jurisdictions pursue similar programs, policy becomes a strategic instrument in \emph{interjurisdictional competition} for demand and local rents.  The resulting externalities---business stealing on one side, knowledge spillovers on the other---share a family resemblance with the fiscal externalities in the tax-competition literature (\citealp{Tiebout1956,Wilson1986,ZodrowMieszkowski1986,Wildasin1988,KeenMarchand1997}), though the mechanism here operates through \emph{product-market demand shifting} rather than competition for mobile capital.%
+\footnote{In the standard tax-competition framework, jurisdictions attract mobile capital by lowering tax rates, generating fiscal externalities.  Here, no factor is mobile; instead, public investment shifts demand among differentiated products.  The paper thus sits at the intersection of R\&D competition models (\citealp{dAspremontJacquemin1988,KamienMullerZang1992}) and intergovernmental-grant design (\citealp{Wildasin1984,Wildasin1989}), with public rather than private actors choosing the demand-shifting investment.}
+A practical policy question follows: when does decentralized public “R\&D-plus-promotion” create a \emph{promotion-policy trap}---costly spending that mostly reallocates demand across regions---and when does it instead lead to underinvestment because knowledge spillovers are not internalized?\footnote{Many real-world programs bundle welfare-relevant research with generic promotion; for beggar-thy-neighbor incentives in promotion programs, see \citealp{AlstonFreebairnJames2001}.}
+
+A central difficulty is welfare evaluation when policy shifts demand.
+Some policy-induced demand shifts reflect real improvements in product quality (better taste, safety, reliability, or verifiable attributes), while others reflect persuasion that changes perceptions without improving underlying quality.
+We capture this distinction parsimoniously by decomposing perceived quality into a welfare-relevant (real) component and a purely persuasive component.
+A single parameter $\alpha\in[0,1]$ indexes the \emph{welfare-relevant share}: how much of perceived quality is counted in welfare.
+This connects our setting to classic welfare analyses of advertising and demand-shifting activities (\citealp{DorfmanSteiner1954,DixitNorman1978}) and to the informative-versus-persuasive distinction in advertising economics (\citealp{Nelson1974,GrossmanShapiro1984,BeckerMurphy1993,Ackerberg2001,BlochManceau1999}).
+Intuitively, when $\alpha$ is low (spending is mostly branding/persuasion), interjurisdictional competition tends to look like business stealing; when $\alpha$ is high (spending is mostly quality improvement and verification), the same competition can be socially valuable, especially if knowledge spills over.
+
+We study this trade-off in a two-jurisdiction Hotelling model in which downstream firms compete in prices (Bertrand) and policy affects demand through perceived quality.
+Public investment creates a perceived-quality index that spills over across jurisdictions at rate $\rho\in[0,1)$.
+Solving the downstream pricing game yields a reduced-form profit function, which allows a closed-form characterization of both the decentralized Nash equilibrium and the social optimum.
+
+Our main results can be stated succinctly:
+\begin{itemize}
+\item \textbf{Closed-form sign reversal (threshold).}  Decentralized public R\&D is \emph{excessive} if and only if the welfare-relevant share $\alpha$ is below a cutoff that depends on spillovers,
+\begin{equation}\label{eq:baralpha}
+\bar\alpha(\rho)\equiv \frac{2(1-\rho)}{3(1+\rho)}.
+\end{equation}
+It is \emph{insufficient} if $\alpha>\bar\alpha(\rho)$. Figure~\ref{fig:regions} summarizes the regions of over- and underinvestment and can be read as a policy-diagnostic chart: the ``overinvestment'' side corresponds to persuasion-heavy (branding/promotion) packages, while the ``underinvestment'' side corresponds to research-heavy (real-quality) packages with spillovers.
+\item \textbf{Single-instrument implementation benchmark.} Within the one-dimensional baseline model, a single matching instrument on R\&D costs decentralizes the constrained first best with an implementing rate $s^{*}=1-\bar\alpha(\rho)/\alpha$ in closed form. The required match can be negative, reflecting that when $\alpha$ is sufficiently small, the benchmark calls for restraining (rather than subsidizing) decentralized spending.
+\item \textbf{Microfoundation for $\alpha$ (two-input extension).}  We provide a parsimonious extension in which policy has two components: welfare-relevant research and welfare-irrelevant promotion. The extension delivers closed-form allocations and implies that decentralization tilts spending toward persuasion (a \emph{promotion tilt}), thereby lowering the implied welfare-relevant share in closed form. This both clarifies the interpretation of the promotion-policy trap and addresses the concern that $\alpha$ is merely a reduced-form welfare weight.
+\end{itemize}
+
+The threshold has a simple economic logic.
+A smaller welfare-relevant share magnifies redistributive incentives: when policy mainly persuades rather than improves quality, each jurisdiction has a strong motive to invest in order to steal demand from its rival.
+By contrast, stronger spillovers raise the social value of investment relative to private local returns, pushing the distortion toward underinvestment.
+In the coffee example, investments in agronomy and verification (quality-control labs, traceability, safety standards) are plausibly high-$\alpha$, whereas spending on slogans, events, and image marketing is plausibly low-$\alpha$.%
+\footnote{Geographical indications (GIs) and related certification schemes (PDO/PGI in the EU, GI marks in East Asia) can be interpreted as institutional devices that \emph{raise} the effective $\alpha$ by tying the brand to verifiable production standards. By restricting promotional claims to those backed by certified attributes, GIs also function as \emph{spillover-governance} mechanisms, partly controlling $\rho$ through rules on permitted production area and methods \citep{CrespiMarette2003}. The interplay between GI institutions and the incentives analyzed here is an interesting avenue for future work.}
+The model predicts that these two program types can lie on opposite sides of Figure~\ref{fig:regions}: the same interjurisdictional rivalry may be socially productive in one case and socially wasteful in the other.
+
+Finally, although our analysis is theoretical, the key objects admit an empirical interpretation that makes the cutoff operational in principle.
+The welfare-relevant share $\alpha$ can be proxied by how much a policy package translates into \emph{objective} quality improvements versus \emph{perception-only} shifts.
+High-$\alpha$ components include investments that measurably improve or verify quality (e.g., agronomic and process R\&D, safety and quality-control infrastructure, certification and traceability systems), while low-$\alpha$ components include spending whose primary channel is persuasion (e.g., branding campaigns, slogans, promotional events, influencer marketing).
+Empirically, $\alpha$ is thus related to (i) expenditure shares on verifiable quality-improvement/verification versus promotion, and (ii) outcomes such as objective quality scores, certification uptake, safety incidents, and price premia for verified attributes, contrasted with survey-based perception shifts unaccompanied by objective changes.
+Spillovers $\rho$ can be proxied by cross-region diffusion of practices and know-how (e.g., adoption patterns, shared extension and training networks, or other diffusion indicators).
+These mappings motivate our focus on a closed-form cutoff and a single-instrument rule: the key policy risk is misclassifying the environment (subsidize versus restrain), which is most salient when $\alpha$ is low and spillovers are moderate.
+
+Relative to canonical spillover-driven R\&D models (\citealp{Arrow1962,dAspremontJacquemin1988,Katz1986,KamienMullerZang1992,LeahyNeary1997,Spence1984}) and persuasive-advertising models in differentiated markets (\citealp{BlochManceau1999,Bagwell2007}), the novelty is to combine knowledge spillovers and business-stealing incentives \emph{within a decentralized policy problem} and to close the loop from (i) equilibrium distortion to (ii) implementable intergovernmental matching design (\citealp{Wildasin1984,Wildasin1989}). In addition, Section~\ref{sec:welfare} provides a compact two-input extension that microfounds $\alpha$ by decomposing policy into welfare-relevant research and welfare-irrelevant promotion while preserving the reduced-form profit dependence on the perceived-quality gap.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.8\linewidth]{fig1.png}
+  \caption{Regions of over- and underinvestment as a function of spillovers ($\rho$) and the welfare-relevant share ($\alpha$). The solid curve plots the closed-form threshold $\bar\alpha(\rho)=2(1-\rho)/[3(1+\rho)]$ derived in Proposition~\ref{prop:threshold_alpha}.}
+  \label{fig:regions}
+\end{figure}
+
+The remainder of the paper is organized as follows. Section~\ref{sec:model} presents the model. Section~\ref{sec:price} derives the downstream price equilibrium and the reduced-form profit function. Section~\ref{sec_rd} characterizes the decentralized R\&D equilibrium. Section~\ref{sec:welfare} compares the decentralized outcome to the social optimum, derives the threshold result and implementation, and then presents a two-input extension that microfounds $\alpha$ via real R\&D and promotion. Section~\ref{sec:conclusion} concludes.
+
+
+
+
+\input{model}
+\input{price}
+\input{sec_rd}
+\input{welfare.tex}
+\input{conclusion}
+\input{appendix}
+
+\section*{Statements and Declarations}
+
+\subsection*{Competing Interests}
+The author declares that he has no competing interests.
+
+\subsection*{Funding}
+No funding was received to assist with the preparation of this manuscript.
+
+\subsection*{Data availability}
+Not applicable. No datasets were generated or analyzed in this study.
+
+\subsection*{Author Contributions}
+Ryota Matsuki: conceptualization, formal analysis, writing (original draft), writing (review and editing).
+
+\subsection*{Use of Generative AI and AI-assisted Technologies}
+During the preparation of this work, the author used ChatGPT (OpenAI) to (i) brainstorm and refine exposition, (ii) organize related literature, and (iii) obtain suggestions for checking algebraic derivations. The author reviewed and edited the content as needed and takes full responsibility for the manuscript.
+
+% --- Inline bibliography (do NOT require BibTeX processing by submission system) ---
+% Generated from bib_complete.bbl (with DOI shown as full https://doi.org/... links)
+\begin{thebibliography}{}
+\bibitem[Ackerberg(2001)]{Ackerberg2001}
+Ackerberg, Daniel A. (2001).
+\newblock Empirically Distinguishing Informative and Prestige Effects of Advertising.
+\newblock \emph{The RAND Journal of Economics}, 32(2), 316--333.
+\newblock \url{https://www.jstor.org/stable/2696412}
+
+\bibitem[Alston et~al.(2001)]{AlstonFreebairnJames2001}
+Alston, Julian M., Freebairn, John W., \& James, Jennifer S. (2001).
+\newblock Beggar-Thy-Neighbor Advertising: Theory and Application to Generic Commodity Promotion Programs.
+\newblock \emph{American Journal of Agricultural Economics}, 83(4), 888--902.
+\newblock \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/0002-9092.00217}
+
+\bibitem[Alston et~al.(1995)]{AlstonNortonPardey1995}
+Alston, Julian M., Norton, George W., \& Pardey, Philip G. (1995).
+\newblock \emph{Science Under Scarcity: Principles and Practice for Agricultural Research Evaluation and Priority Setting}.
+\newblock Cornell University Press.
+\newblock \url{https://hdl.handle.net/10568/136536}
+
+\bibitem[Alston et~al.(2020)]{AlstonPardeyRao2020}
+Alston, Julian M., Pardey, Philip G., \& Rao, Xudong (2020).
+\newblock The Payoff to Investing in CGIAR Research.
+\newblock University of Minnesota, Department of Applied Economics.
+\newblock \url{https://ageconsearch.umn.edu/record/337029}
+
+\bibitem[Arrow(1962)]{Arrow1962}
+Arrow, Kenneth J. (1962).
+\newblock Economic Welfare and the Allocation of Resources for Invention.
+\newblock In Richard R. Nelson (Ed.), \emph{The Rate and Direction of Inventive Activity: Economic and Social Factors} (pp.\ 609--626).
+\newblock Princeton University Press.
+\newblock \url{https://www.nber.org/books-and-chapters/rate-and-direction-inventive-activity-economic-and-social-factors/economic-welfare-and-allocation-resources-invention}
+
+\bibitem[Bagwell(2007)]{Bagwell2007}
+Bagwell, Kyle (2007).
+\newblock The Economic Analysis of Advertising.
+\newblock In Mark Armstrong \& Robert H. Porter (Eds.), \emph{Handbook of Industrial Organization} (Vol.\ 3, pp.\ 1701--1844).
+\newblock Elsevier.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/S1573448X06030287}
+
+\bibitem[Becker and Murphy(1993)]{BeckerMurphy1993}
+Becker, Gary S. \& Murphy, Kevin M. (1993).
+\newblock A Simple Theory of Advertising as a Good or Bad.
+\newblock \emph{The Quarterly Journal of Economics}, 108(4), 941--964.
+\newblock \url{https://www.jstor.org/stable/2118455}
+
+\bibitem[Bloch and Manceau(1999)]{BlochManceau1999}
+Bloch, Francis \& Manceau, Delphine (1999).
+\newblock Persuasive Advertising in Hotelling's Model of Product Differentiation.
+\newblock \emph{International Journal of Industrial Organization}, 17(4), 557--574.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/S0167718798000149}
+
+\bibitem[Crespi and Marette(2003)]{CrespiMarette2003}
+Crespi, John M. \& Marette, Stephan (2003).
+\newblock Some Economic Implications of Public Labeling.
+\newblock \emph{Journal of Food Distribution Research}, 34(3), 1--12.
+\newblock \url{https://ageconsearch.umn.edu/record/27053}
+
+\bibitem[d'Aspremont and Jacquemin(1988)]{dAspremontJacquemin1988}
+d'Aspremont, Claude \& Jacquemin, Alexis (1988).
+\newblock Cooperative and Noncooperative R\&D in Duopoly with Spillovers.
+\newblock \emph{American Economic Review}, 78(5), 1133--1137.
+\newblock \url{https://www.jstor.org/stable/1807173}
+
+\bibitem[Dixit and Norman(1978)]{DixitNorman1978}
+Dixit, Avinash \& Norman, Victor (1978).
+\newblock Advertising and Welfare.
+\newblock \emph{The Bell Journal of Economics}, 9(1), 1--17.
+\newblock \url{https://www.jstor.org/stable/3003609}
+
+\bibitem[Dorfman and Steiner(1954)]{DorfmanSteiner1954}
+Dorfman, Robert \& Steiner, Peter O. (1954).
+\newblock Optimal Advertising and Optimal Quality.
+\newblock \emph{American Economic Review}, 44(5), 826--836.
+\newblock \url{https://www.jstor.org/stable/1807704}
+
+\bibitem[Grossman and Shapiro(1984)]{GrossmanShapiro1984}
+Grossman, Gene M. \& Shapiro, Carl (1984).
+\newblock Informative Advertising with Differentiated Products.
+\newblock \emph{Review of Economic Studies}, 51(1), 63--81.
+\newblock \url{https://www.jstor.org/stable/2297705}
+
+\bibitem[Hurley et~al.(2014)]{HurleyRaoPardey2014}
+Hurley, Terrance M., Rao, Xudong, \& Pardey, Philip G. (2014).
+\newblock Re-examining the Reported Rates of Return to Food and Agricultural Research and Development.
+\newblock \emph{American Journal of Agricultural Economics}, 96(5), 1492--1504.
+\newblock \url{https://academic.oup.com/ajae/article/96/5/1492/2737489}
+
+\bibitem[Kamien et~al.(1992)]{KamienMullerZang1992}
+Kamien, Morton I., Muller, Eitan, \& Zang, Israel (1992).
+\newblock Research Joint Ventures and R\&D Cartels.
+\newblock \emph{American Economic Review}, 82(5), 1293--1306.
+\newblock \url{https://www.jstor.org/stable/2117479}
+
+\bibitem[Kinnucan and Zheng(2004)]{KinnucanZheng2004}
+Kinnucan, Henry W. \& Zheng, Yuqing (2004).
+\newblock Advertising's Effect on the Market Demand Elasticity: A Note.
+\newblock \emph{Agribusiness}, 20(2), 181--188.
+\newblock \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/agr.20004}
+
+\bibitem[Katz(1986)]{Katz1986}
+Katz, Michael L. (1986).
+\newblock An Analysis of Cooperative Research and Development.
+\newblock \emph{The RAND Journal of Economics}, 17(4), 527--543.
+\newblock \url{https://www.jstor.org/stable/2555479}
+
+\bibitem[Keen and Marchand(1997)]{KeenMarchand1997}
+Keen, Michael \& Marchand, Maurice (1997).
+\newblock Fiscal Competition and the Pattern of Public Spending.
+\newblock \emph{Journal of Public Economics}, 66(1), 33--53.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/S0047272797000352}
+
+\bibitem[Leahy and Neary(1997)]{LeahyNeary1997}
+Leahy, Dermot \& Neary, J. Peter (1997).
+\newblock Public Policy towards R\&D in Oligopolistic Industries.
+\newblock \emph{American Economic Review}, 87(4), 642--662.
+\newblock \url{https://www.jstor.org/stable/2951367}
+
+\bibitem[Nelson(1974)]{Nelson1974}
+Nelson, Phillip (1974).
+\newblock Advertising as Information.
+\newblock \emph{Journal of Political Economy}, 82(4), 729--754.
+\newblock \url{https://www.jstor.org/stable/1837143}
+
+\bibitem[Spence(1984)]{Spence1984}
+Spence, A. Michael (1984).
+\newblock Cost Reduction, Competition, and Industry Performance.
+\newblock \emph{Econometrica}, 52(1), 101--121.
+\newblock \url{https://www.jstor.org/stable/1911463}
+
+\bibitem[Tiebout(1956)]{Tiebout1956}
+Tiebout, Charles M. (1956).
+\newblock A Pure Theory of Local Expenditures.
+\newblock \emph{Journal of Political Economy}, 64(5), 416--424.
+\newblock \url{https://www.jstor.org/stable/1826343}
+
+\bibitem[Wildasin(1984)]{Wildasin1984}
+Wildasin, David E. (1984).
+\newblock The Welfare Effects of Intergovernmental Grants in an Economy with Distortionary Local Taxes.
+\newblock \emph{Journal of Public Economics}, 25(1--2), 103--125.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/004727278490046X}
+
+\bibitem[Wildasin(1988)]{Wildasin1988}
+Wildasin, David E. (1988).
+\newblock Nash Equilibria in Models of Fiscal Competition.
+\newblock \emph{Journal of Public Economics}, 35(2), 229--240.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/0047272788900552}
+
+\bibitem[Wildasin(1989)]{Wildasin1989}
+Wildasin, David E. (1989).
+\newblock Interjurisdictional Capital Mobility: Fiscal Externality and a Corrective Subsidy.
+\newblock \emph{Journal of Urban Economics}, 25(2), 193--212.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/009411908990034X}
+
+\bibitem[Wilson(1986)]{Wilson1986}
+Wilson, John Douglas (1986).
+\newblock A Theory of Interregional Tax Competition.
+\newblock \emph{Journal of Urban Economics}, 19(3), 296--315.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/0094119086900458}
+
+\bibitem[Wilson(1999)]{Wilson1999}
+Wilson, John Douglas (1999).
+\newblock Theories of Tax Competition.
+\newblock \emph{National Tax Journal}, 52(2), 269--304.
+\newblock \url{https://www.jstor.org/stable/2006731}
+
+\bibitem[Zodrow and Mieszkowski(1986)]{ZodrowMieszkowski1986}
+Zodrow, George R. \& Mieszkowski, Peter (1986).
+\newblock Pigou, Tiebout, Property Taxation, and the Underprovision of Local Public Goods.
+\newblock \emph{Journal of Urban Economics}, 19(3), 356--370.
+\newblock \url{https://www.sciencedirect.com/science/article/pii/0094119086900483}
+
+\end{thebibliography}
+\end{document}
